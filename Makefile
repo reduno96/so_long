@@ -1,6 +1,8 @@
 SRCM = so_long.c \
+		so_long_utils.c \
 		./get_next_line/get_next_line.c \
 		./get_next_line/get_next_line_utils.c \
+
 
 
 CC = CC
@@ -19,21 +21,21 @@ RM = rm -rf
 
 all: ${LIBFT} ${OBJSM} ${NAME}
 
-${NAME}: $(NAME).c ${OBJM}
-	${CC} ${CFLAGS} ${INLIB} ${INFRW} ${OBJSM} -o ${NAME}
+${NAME}: ${OBJSM}
+	${CC} ${CFLAGS} ${INLIB} ${INFRW} ${LIBFT} ${OBJSM} -o ${NAME}
 
-*.o: *.c so_long.h
-	$(CC) $(CFLAGS) -Imlx -c $< -o $@
+# *.o: *.c so_long.h
+# 	$(CC) $(CFLAGS) -Imlx -c $< -o $@
 
 ${LIBFT}:
 	@make -C libft
 
 clean:
 	make fclean -C libft
-	${RM} ${OBJM}
+	${RM} ${OBJSM}
 
 fclean: clean
-	${RM} ${NAME} ${OBJM}
+	${RM} ${NAME} ${OBJSM}
 
 re: fclean all
 

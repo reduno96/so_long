@@ -6,7 +6,7 @@
 /*   By: rel-mora <rel-mora@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 22:48:56 by rel-mora          #+#    #+#             */
-/*   Updated: 2024/01/11 11:22:23 by rel-mora         ###   ########.fr       */
+/*   Updated: 2024/04/22 22:41:46 by rel-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ int			ft_isprint(int c);
 int			ft_tolower(int c);
 int			ft_toupper(int c);
 int			ft_strncmp(const char *s1, const char *s2, size_t n);
+int	ft_strcmp(char *s1, char *s2);
 int			ft_memcmp(const void *s1, const void *s2, size_t n);
 size_t		ft_strlcpy(char *dst, const char *src, size_t dstsize);
 size_t		ft_strlcat(char *dst, const char *src, size_t dstsize);
