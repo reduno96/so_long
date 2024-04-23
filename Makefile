@@ -1,4 +1,5 @@
 SRCM = so_long.c \
+		ft_validate.c \
 		so_long_utils.c \
 		./get_next_line/get_next_line.c \
 		./get_next_line/get_next_line_utils.c \

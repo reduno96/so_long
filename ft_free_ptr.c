@@ -1,29 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.c                                          :+:      :+:    :+:   */
+/*   ft_free_ptr.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rel-mora <rel-mora@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/21 11:54:17 by rel-mora          #+#    #+#             */
-/*   Updated: 2024/04/23 10:44:35 by rel-mora         ###   ########.fr       */
+/*   Created: 2024/04/23 10:11:23 by rel-mora          #+#    #+#             */
+/*   Updated: 2024/04/23 10:15:16 by rel-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	main(int argc, char **argv)
+void ft_free_map(char **map)
 {
-	char	**map;
-	int i;
+    int i;
 
-	i = 0;
-	map = NULL;
-	if (argc == 2)
-	{
-		map = ft_validate(argv[1]);
-
-		while(map[i])
-			printf("%s", map[i++]);
-	}
+    i = 0;
+    while(map[i])
+        free(map[i++]);
+    free(map);
 }
