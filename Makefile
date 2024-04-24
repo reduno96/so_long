@@ -1,6 +1,7 @@
 SRCM = so_long.c \
 		ft_validate.c \
 		so_long_utils.c \
+		ft_check.c \
 		./get_next_line/get_next_line.c \
 		./get_next_line/get_next_line_utils.c \
 
@@ -8,8 +9,7 @@ SRCM = so_long.c \
 
 CC = CC
 CFLAGS = -Wall -Wextra -Werror
-INFRW = -framework OpenGL -framework AppKit
-INLIB = -lmlx
+INFRW = MLX42/build/libmlx42.a MLX42/build/libglfw3.a -Iinclude -lm -framework Cocoa -framework OpenGL -framework IOKit
 
 NAME = so_long
 
@@ -23,7 +23,7 @@ RM = rm -rf
 all: ${LIBFT} ${OBJSM} ${NAME}
 
 ${NAME}: ${OBJSM}
-	${CC} ${CFLAGS}  ${LIBFT} ${OBJSM} -o ${NAME} -fsanitize=address -g
+	${CC} ${CFLAGS}  ${LIBFT} ${INFRW} ${OBJSM} -o ${NAME} -fsanitize=address -g
 
 # *.o: *.c so_long.h
 # 	$(CC) $(CFLAGS) -Imlx -c $< -o $@
