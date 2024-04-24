@@ -6,27 +6,38 @@
 /*   By: rel-mora <rel-mora@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 21:17:12 by rel-mora          #+#    #+#             */
-/*   Updated: 2024/04/23 19:25:40 by rel-mora         ###   ########.fr       */
+/*   Updated: 2024/04/24 11:12:55 by rel-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	ft_check_file(char *argv)
+char	**ft_duplicate_map(char **map, int j)
 {
-	int	i;
+	char	**cpy_map;
+	t_indx	var;
 
-	i = ft_strlen(argv) - 1;
-	if (argv[i] != 'r')
-		return (0);
-	i--;
-	if (argv[i] != 'e')
-		return (0);
-	i--;
-	if (argv[i] != 'b')
-		return (0);
-	i--;
-	if (argv[i] != '.')
-		return (0);
-	return (1);
+	var.i = 0;
+	var.j = 0;
+	cpy_map = malloc((j + 1) * sizeof(char *));
+	while (map[var.i])
+	{
+		cpy_map[var.i] = ft_strdup(map[var.i]);
+		var.i++;
+	}
+	cpy_map[var.i] = NULL;
+	return (cpy_map);
+}
+
+void	ft_flood_fill(char **cpy_map, int x, int y)
+{
+	if (cpy_map[x][y] == '1')
+		return ;
+	if (cpy_map[x][y] == 'C' || cpy_map[x][y] != '0' || cpy_map[x][y] != 'E'
+		|| cpy_map[x][y] != 'P')
+		cpy_map[x][y] = '1';
+	ft_flood_fill(cpy_map, x + 1, y);
+	ft_flood_fill(cpy_map, x - 1, y);
+	ft_flood_fill(cpy_map, x, y + 1);
+	ft_flood_fill(cpy_map, x, y - 1);
 }
