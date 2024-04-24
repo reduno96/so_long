@@ -6,7 +6,7 @@
 /*   By: rel-mora <rel-mora@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 11:54:17 by rel-mora          #+#    #+#             */
-/*   Updated: 2024/04/23 10:44:35 by rel-mora         ###   ########.fr       */
+/*   Updated: 2024/04/24 10:28:15 by rel-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	main(int argc, char **argv)
 	{
 		map = ft_validate(argv[1]);
 
-		while(map[i])
-			printf("%s", map[i++]);
+		// while(map[i])
+		// 	printf("%s", map[i++]);
 	}
 }

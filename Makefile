@@ -23,7 +23,7 @@ RM = rm -rf
 all: ${LIBFT} ${OBJSM} ${NAME}
 
 ${NAME}: ${OBJSM}
-	${CC} ${CFLAGS} ${INLIB} ${INFRW} ${LIBFT} ${OBJSM} -o ${NAME}
+	${CC} ${CFLAGS}  ${LIBFT} ${OBJSM} -o ${NAME} -fsanitize=address -g
 
 # *.o: *.c so_long.h
 # 	$(CC) $(CFLAGS) -Imlx -c $< -o $@

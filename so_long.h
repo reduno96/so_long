@@ -6,7 +6,7 @@
 /*   By: rel-mora <rel-mora@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 18:07:39 by rel-mora          #+#    #+#             */
-/*   Updated: 2024/04/23 19:06:13 by rel-mora         ###   ########.fr       */
+/*   Updated: 2024/04/24 08:02:36 by rel-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #define ESC_KEY 53
 
 // Include
-# include <mlx.h>
+// # include <mlx.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <string.h>
