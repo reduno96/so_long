@@ -7,9 +7,9 @@ SRCM = so_long.c \
 
 
 
-CC = CC
+CC = cc
 CFLAGS = -Wall -Wextra -Werror
-INFRW = MLX42/build/libmlx42.a MLX42/build/libglfw3.a -Iinclude -lm -framework Cocoa -framework OpenGL -framework IOKit
+INFRW = -framework OpenGL -framework AppKit
 
 NAME = so_long
 
@@ -23,10 +23,10 @@ RM = rm -rf
 all: ${LIBFT} ${OBJSM} ${NAME}
 
 ${NAME}: ${OBJSM}
-	${CC} ${CFLAGS}  ${LIBFT} ${INFRW} ${OBJSM} -o ${NAME} -fsanitize=address -g
+	@${CC} ${CFLAGS} -lmlx ${LIBFT} ${INFRW} ${OBJSM} -o ${NAME}
 
-# *.o: *.c so_long.h
-# 	$(CC) $(CFLAGS) -Imlx -c $< -o $@
+*.o: *.c so_long.h
+	@$(CC) $(CFLAGS) -Imlx -c $< -o $@
 
 ${LIBFT}:
 	@make -C libft

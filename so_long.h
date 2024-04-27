@@ -6,7 +6,7 @@
 /*   By: rel-mora <rel-mora@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 18:07:39 by rel-mora          #+#    #+#             */
-/*   Updated: 2024/04/24 16:36:16 by rel-mora         ###   ########.fr       */
+/*   Updated: 2024/04/27 15:22:52 by rel-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,13 @@
 // # include <mlx.h>
 # include "./get_next_line/get_next_line.h"
 # include "./libft/libft.h"
-# include "MLX42/include/MLX42/MLX42.h"
+#include <mlx.h>
 # include <fcntl.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <string.h>
+
+
 
 typedef struct s_data
 {
