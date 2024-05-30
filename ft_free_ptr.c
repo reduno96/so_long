@@ -3,21 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   ft_free_ptr.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rel-mora <rel-mora@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rel-mora <reduno96@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 10:11:23 by rel-mora          #+#    #+#             */
-/*   Updated: 2024/04/23 10:15:16 by rel-mora         ###   ########.fr       */
+/*   Updated: 2024/05/30 18:24:54 by rel-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void ft_free_map(char **map)
+void	ft_put_error(void)
 {
-    int i;
+	ft_putstr_fd("Error", 2);
+	exit(1);
+}
 
-    i = 0;
-    while(map[i])
-        free(map[i++]);
-    free(map);
+void	ft_free_map(char **map)
+{
+	int	i;
+
+	i = 0;
+	while (map[i])
+		free(map[i++]);
+	free(map);
 }

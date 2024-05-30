@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_check.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rel-mora <rel-mora@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rel-mora <reduno96@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 11:10:04 by rel-mora          #+#    #+#             */
-/*   Updated: 2024/04/24 15:57:11 by rel-mora         ###   ########.fr       */
+/*   Updated: 2024/05/30 18:34:22 by rel-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,56 +31,28 @@ int	ft_check_file(char *argv)
 	return (1);
 }
 
-void	ft_check_wall(char **map, int i)
+void	ft_check_map(char *argv, char ***map)
 {
-	int	j;
+	char	*joined;
+	char	*get_line;
+	int		fd;
 
-	j = 0;
-	while (map[i - 1][j])
+	joined = NULL;
+	fd = open(argv, O_RDONLY);
+	get_line = get_next_line(fd);
+	while (get_line != NULL)
 	{
-		if (map[i - 1][j] != '1')
-		{
-			ft_putstr_fd("Error", 2);
-			exit(1);
-		}
-		j++;
+		if (get_line[0] == '\n')
+			ft_put_error();
+		joined = ft_join(joined, get_line);
+		get_line = get_next_line(fd);
 	}
-	j = 0;
-	while (map[0][j])
-	{
-		if (map[0][j] != '1')
-		{
-			ft_putstr_fd("Error", 2);
-			exit(1);
-		}
-		j++;
-	}
+	*map = ft_split(joined, '\n');
+	if (!(*map))
+		ft_put_error();
 }
 
-void	ft_check_lgh(char **map)
-{
-	int		i;
-	int		j;
-	size_t	res;
-
-	i = 0;
-	j = 0;
-	res = 0;
-	res = ft_strlen(map[i]);
-	while (map[i])
-	{
-		if (res != ft_strlen(map[i]) || map[i][res - 1] != '1'
-			|| map[i][0] != '1')
-		{
-			ft_putstr_fd("Error", 2);
-			exit(1);
-		}
-		i++;
-	}
-	ft_check_wall(map, i);
-}
-
-void	ft_check_just(char **map)
+void	ft_check_char(char **map)
 {
 	t_indx	var;
 
@@ -93,50 +65,16 @@ void	ft_check_just(char **map)
 			if (map[var.i][var.j] != '0' && map[var.i][var.j] != '1'
 				&& map[var.i][var.j] != 'P' && map[var.i][var.j] != 'E'
 				&& map[var.i][var.j] != 'C')
-			{
-				ft_putstr_fd("Error", 2);
-				exit(1);
-			}
+				ft_put_error();
 			var.j++;
 		}
 		var.i++;
-	}
-}
-
-void	ft_check_flood(char **cpy_map)
-{
-	t_indx	var;
-
-	var.i = 0;
-	var.j = 0;
-	while (cpy_map[var.i])
-	{
-		var.j = 0;
-		while (cpy_map[var.i][var.j])
-		{
-			if (cpy_map[var.i][var.j] == 'E' || cpy_map[var.i][var.j] == 'C')
-			{
-				ft_putstr_fd("Error", 2);
-				exit(1);
-			}
-			var.j++;
-		}
-		var.i++;
-	}
-}
-
-void	ft_check_all(char **map)
-{
-	if (!ft_check_least(map, 'C') || !ft_check_least(map, 'E'))
-	{
-		ft_putstr_fd("Error", 2);
-		exit(1);
 	}
 }
 
 int	ft_check_least(char **map, char c)
 {
-	t_indx var;
+	t_indx	var;
 
 	var.i = 0;
 	while (map[var.i])
@@ -151,4 +89,11 @@ int	ft_check_least(char **map, char c)
 		var.i++;
 	}
 	return (0);
+}
+
+void	ft_check_all(char **map)
+{
+	if (!ft_check_least(map, 'C') || !ft_check_least(map, 'E')
+		|| !ft_check_least(map, 'P'))
+		ft_put_error();
 }
