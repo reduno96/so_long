@@ -6,7 +6,7 @@
 /*   By: rel-mora <reduno96@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 10:01:24 by rel-mora          #+#    #+#             */
-/*   Updated: 2024/05/30 18:43:10 by rel-mora         ###   ########.fr       */
+/*   Updated: 2024/05/30 20:47:46 by rel-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,13 @@ void	ft_player_path(char **map)
 	cpy_map = ft_duplicate_map(map, var.j);
 	ft_flood_fill(cpy_map, var.x, var.y);
 	ft_check_flood(cpy_map);
+	ft_free_map(cpy_map);
 }
 
 char	**ft_validate(char *argv)
 {
 	char	**map;
-	int		i;
 
-	i = 0;
 	map = NULL;
 	if (ft_check_file(argv) == 1)
 	{
@@ -53,8 +52,6 @@ char	**ft_validate(char *argv)
 		ft_check_all(map);
 		ft_check_lgh(map);
 		ft_player_path(map);
-		while (map[i])
-			printf("%s\n", map[i++]);
 	}
 	else
 		ft_put_error();

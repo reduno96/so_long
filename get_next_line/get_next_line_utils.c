@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rel-mora <rel-mora@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rel-mora <reduno96@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 16:30:53 by rel-mora          #+#    #+#             */
-/*   Updated: 2024/04/23 12:41:30 by rel-mora         ###   ########.fr       */
+/*   Updated: 2024/05/30 19:16:07 by rel-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,5 +79,6 @@ char	*ft_join(char *s1, char *s2)
 	while (s2[j])
 		str_final[i++] = s2[j++];
 	str_final[i] = '\0';
+	free(s1);
 	return (str_final);
 }

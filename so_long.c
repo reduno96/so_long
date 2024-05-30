@@ -6,7 +6,7 @@
 /*   By: rel-mora <reduno96@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 11:54:17 by rel-mora          #+#    #+#             */
-/*   Updated: 2024/05/30 18:26:31 by rel-mora         ###   ########.fr       */
+/*   Updated: 2024/05/30 23:14:09 by rel-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,18 @@
 
 int	main(int argc, char **argv)
 {
-	// char	**map;
-	// map = NULL;
-	(void)argv;
-	(void)argc;
+	char	**map;
+
+	map = NULL;
 	if (argc == 2)
 	{
-		ft_validate(argv[1]);
+		map = ft_validate(argv[1]);
+		ft_initialize(map);
 	}
 	else
 		ft_put_error();
+	ft_free_map(map);
 }
-// #include "MLX42/include/MLX42/MLX42.h"
 // #include <stdbool.h>
 // #include <stdio.h>
 // #include <stdlib.h>

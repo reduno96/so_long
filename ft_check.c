@@ -6,7 +6,7 @@
 /*   By: rel-mora <reduno96@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 11:10:04 by rel-mora          #+#    #+#             */
-/*   Updated: 2024/05/30 18:34:22 by rel-mora         ###   ########.fr       */
+/*   Updated: 2024/05/30 20:41:04 by rel-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,11 @@ void	ft_check_map(char *argv, char ***map)
 		if (get_line[0] == '\n')
 			ft_put_error();
 		joined = ft_join(joined, get_line);
+		free(get_line);
 		get_line = get_next_line(fd);
 	}
 	*map = ft_split(joined, '\n');
+	free(joined);
 	if (!(*map))
 		ft_put_error();
 }

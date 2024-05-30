@@ -4,6 +4,7 @@ SRCM = so_long.c \
 		ft_check.c \
 		ft_check_2.c \
 		ft_free_ptr.c \
+		game.c \
 		./get_next_line/get_next_line.c \
 		./get_next_line/get_next_line_utils.c \
 

@@ -6,7 +6,7 @@
 /*   By: rel-mora <reduno96@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 18:07:39 by rel-mora          #+#    #+#             */
-/*   Updated: 2024/05/30 18:25:19 by rel-mora         ###   ########.fr       */
+/*   Updated: 2024/05/30 22:08:09 by rel-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 
 # include "./get_next_line/get_next_line.h"
 # include "./libft/libft.h"
+# include "MLX42/include/MLX42/MLX42.h"
 # include <fcntl.h>
 # include <stdio.h>
 # include <stdlib.h>
@@ -41,8 +42,9 @@ void	ft_check_flood(char **cpy_map);
 void	ft_check_map(char *argv, char ***map);
 void	ft_player_path(char **map);
 char	**ft_validate(char *argv);
-void	ft_free_map(char **map);
 char	**ft_duplicate_map(char **map, int j);
+void	ft_free_map(char **map);
+void	ft_initialize(char **map);
 void	ft_flood_fill(char **cpy_map, int x, int y);
 void	ft_put_error(void);
 
