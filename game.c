@@ -6,7 +6,7 @@
 /*   By: rel-mora <reduno96@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 17:02:07 by rel-mora          #+#    #+#             */
-/*   Updated: 2024/06/01 12:27:25 by rel-mora         ###   ########.fr       */
+/*   Updated: 2024/06/01 15:31:17 by rel-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,11 @@
 
 void	ft_load_texture(t_indx *var, char *path, int x, int y)
 {
-	var->texture = mlx_load_png(path);
-	var->img = mlx_texture_to_image(var->mlx, var->texture);
-	mlx_image_to_window(var->mlx, var->img, x, y);
+	var->texture[var->i][var->j] = mlx_load_png(path);
+	var->img[var->i][var->j] = mlx_texture_to_image(var->mlx,
+			var->texture[var->i][var->j]);
+	if (mlx_image_to_window(var->mlx, var->img[var->i][var->j], x, y) < 0)
+		ft_put_error();
 }
 
 void	ft_put_img(char *line, t_indx *var)
@@ -60,22 +62,48 @@ void	my_keyhook(mlx_key_data_t keydata, void *param)
 		puts("!");
 }
 
+void	ft_delete_all_imgs(t_indx *var)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (i <= var->x)
+	{
+		while (j <= var->y)
+		{
+			mlx_delete_image(var->mlx, var->img[i][j]);
+			mlx_delete_texture(var->texture[i][j]);
+			j++;
+		}
+		i++;
+	}
+}
+
 void	ft_initialize(t_indx *var)
 {
-	// while (var->map[var->x])
-	// {
-	// 	var->y = ft_strlen(var->map[var->x]);
-	// 	var->x++;
-	// }
-	var->mlx = mlx_init(250 /* var->y * 32 */, /* var->x * 32 */ 250,
-			"so_long_game", false);
-	// while (var->map[var->i])
-	// {
-	// 	ft_put_img(var->map[var->i], var);
-	// 	var->i++;
-	// }
-	// hook(var->mlx);
-	// mlx_key_hook(var->mlx, &my_keyhook, NULL);
+	while (var->map[var->x])
+	{
+		var->y = ft_strlen(var->map[var->x]);
+		var->x++;
+	}
+	var->len = var->x * var->y;
+	var->mlx = mlx_init(var->y * 32, var->x * 32, "so_long_game", false);
+	var->texture = malloc(sizeof(mlx_texture_t **) * var->x);
+	var->img = malloc(sizeof(mlx_image_t **) * var->x);
+	for (int i = 0; i < var->x; i++)
+	{
+		var->texture[i] = malloc(sizeof(mlx_texture_t *) * var->y);
+		var->img[i] = malloc(sizeof(mlx_image_t *) * var->y);
+	}
+	while (var->map[var->i])
+	{
+		ft_put_img(var->map[var->i], var);
+		var->i++;
+	}
+	mlx_key_hook(var->mlx, &my_keyhook, NULL);
 	mlx_loop(var->mlx);
+	ft_delete_all_imgs(var);
 	mlx_terminate(var->mlx);
 }

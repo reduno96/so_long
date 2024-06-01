@@ -6,7 +6,7 @@
 /*   By: rel-mora <reduno96@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 18:07:39 by rel-mora          #+#    #+#             */
-/*   Updated: 2024/06/01 12:13:46 by rel-mora         ###   ########.fr       */
+/*   Updated: 2024/06/01 15:25:19 by rel-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ typedef struct s_indx
 	int				len;
 	char			**map;
 	mlx_t			*mlx;
-	mlx_texture_t	*texture;
-	mlx_image_t		*img;
+	mlx_texture_t	***texture;
+	mlx_image_t		***img;
 }					t_indx;
 
 int					ft_check_file(char *argv);
