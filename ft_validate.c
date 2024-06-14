@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_validate.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rel-mora <reduno96@gmail.com>              +#+  +:+       +#+        */
+/*   By: rel-mora <rel-mora@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 10:01:24 by rel-mora          #+#    #+#             */
-/*   Updated: 2024/05/30 20:47:46 by rel-mora         ###   ########.fr       */
+/*   Updated: 2024/06/13 11:47:45 by rel-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ char	**ft_validate(char *argv)
 	map = NULL;
 	if (ft_check_file(argv) == 1)
 	{
-		ft_check_map(argv, &map);
+		map = ft_check_map(argv, map);
 		ft_check_char(map);
 		ft_check_all(map);
 		ft_check_lgh(map);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_check.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rel-mora <reduno96@gmail.com>              +#+  +:+       +#+        */
+/*   By: rel-mora <rel-mora@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 11:10:04 by rel-mora          #+#    #+#             */
-/*   Updated: 2024/05/30 20:41:04 by rel-mora         ###   ########.fr       */
+/*   Updated: 2024/06/13 12:04:59 by rel-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	ft_check_file(char *argv)
 	return (1);
 }
 
-void	ft_check_map(char *argv, char ***map)
+char	**ft_check_map(char *argv, char **map)
 {
 	char	*joined;
 	char	*get_line;
@@ -48,10 +48,11 @@ void	ft_check_map(char *argv, char ***map)
 		free(get_line);
 		get_line = get_next_line(fd);
 	}
-	*map = ft_split(joined, '\n');
+	map = ft_split(joined, '\n');
 	free(joined);
-	if (!(*map))
+	if (!map)
 		ft_put_error();
+	return (map);
 }
 
 void	ft_check_char(char **map)

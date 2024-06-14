@@ -6,7 +6,10 @@
     "so_long.h": "c",
     "fcntl.h": "c",
     "stdio.h": "c",
-    "stdlib.h": "c"
+    "stdlib.h": "c",
+    "__tree": "c",
+    "map": "c",
+    "algorithm": "c"
   },
   "C_Cpp_Runner.cCompilerPath": "gcc",
   "C_Cpp_Runner.cppCompilerPath": "g++",
