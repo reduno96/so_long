@@ -6,65 +6,99 @@
 /*   By: rel-mora <rel-mora@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 22:08:30 by rel-mora          #+#    #+#             */
-/*   Updated: 2024/06/14 22:08:43 by rel-mora         ###   ########.fr       */
+/*   Updated: 2024/06/15 02:51:25 by rel-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	ft_move_up(t_indx *var, int i, int j)
+void	hide_coin_instance(t_indx *var, mlx_image_t *coin, int player_x,
+		int player_y)
 {
-	var->map[i][j] = '0';
-	var->map[i][j - 1] = 'P';
-	var->imgs.player_g->instances->x -= 32;
+	int		coin_x;
+	int		coin_y;
+	size_t	i;
+
+	i = 0;
+	(void)var;
+	printf("%zu\n", coin->count);
+	while (i < coin->count)
+	{
+		coin_x = coin->instances[i].x / 32;
+		coin_y = coin->instances[i].y / 32;
+		if (player_x == coin_x && player_y == coin_y)
+		{
+			coin->instances[i].enabled = 0;
+			if (var->count_coin < coin->count)
+				var->count_coin++;
+			return ;
+		}
+		i++;
+	}
 }
 
-void	ft_move_down(t_indx *var, int i, int j)
+void	ft_move_please(t_indx *var, char c)
 {
-	var->map[i][j] = '0';
-	var->map[i][j + 1] = 'P';
-	var->imgs.player_g->instances->x += 32;
-}
-
-void	ft_move_left(t_indx *var, int i, int j)
-{
-	var->map[i][j] = '0';
-	var->map[i - 1][j] = 'P';
-	var->imgs.player_g->instances->y -= 32;
-}
-
-void	ft_move_right(t_indx *var, int i, int j)
-{
-	var->map[i][j] = '0';
-	var->map[i + 1][j] = 'P';
-	var->imgs.player_g->instances->y += 32;
+	if (c == 'a')
+	{
+		var->imgs.player_g->instances->x -= 32;
+		hide_coin_instance(var, var->imgs.elixir_g, var->j - 1, var->i);
+	}
+	else if (c == 'd')
+	{
+		var->imgs.player_g->instances->x += 32;
+		hide_coin_instance(var, var->imgs.elixir_g, var->j + 1, var->i);
+	}
+	else if (c == 'w')
+	{
+		var->imgs.player_g->instances->y -= 32;
+		hide_coin_instance(var, var->imgs.elixir_g, var->j, var->i - 1);
+	}
+	else if (c == 's')
+	{
+		var->imgs.player_g->instances->y += 32;
+		hide_coin_instance(var, var->imgs.elixir_g, var->j, var->i + 1);
+	}
+	if (var->imgs.door_g->instances->x == var->imgs.player_g->instances->x
+		&& var->imgs.door_g->instances->y == var->imgs.player_g->instances->y
+		&& var->count_coin == var->imgs.elixir_g->count)
+		exit(1);
 }
 
 void	ft_move_player(t_indx *var, char c)
 {
-	int	i;
-	int	j;
-
-	j = var->imgs.player_g->instances->x / 32;
-	i = var->imgs.player_g->instances->y / 32;
+	var->j = var->imgs.player_g->instances->x / 32;
+	var->i = var->imgs.player_g->instances->y / 32;
 	if (c == 'a')
 	{
-		if (var->map[i][j - 1] != '1')
-			ft_move_up(var, i, j);
+		if (var->map[var->i][var->j - 1] != '1')
+			ft_move_please(var, c);
 	}
 	else if (c == 'd')
 	{
-		if (var->map[i][j + 1] != '1')
-			ft_move_down(var, i, j);
+		if (var->map[var->i][var->j + 1] != '1')
+			ft_move_please(var, c);
 	}
 	else if (c == 'w')
 	{
-		if (var->map[i - 1][j] != '1')
-			ft_move_left(var, i, j);
+		if (var->map[var->i - 1][var->j] != '1')
+			ft_move_please(var, c);
 	}
 	else if (c == 's')
 	{
-		if (var->map[i + 1][j] != '1')
-			ft_move_right(var, i, j);
+		if (var->map[var->i + 1][var->j] != '1')
+			ft_move_please(var, c);
 	}
+}
+
+void	ft_move(t_indx *var, char c)
+{
+	int	inst_ply_x;
+	int	inst_ply_y;
+
+	inst_ply_x = var->imgs.player_g->instances->x / 32;
+	inst_ply_y = var->imgs.player_g->instances->y / 32;
+	ft_move_player(var, c);
+	var->count_move++;
+	ft_printf("%i \n", var->count_move);
 }

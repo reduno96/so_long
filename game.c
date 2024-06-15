@@ -6,7 +6,7 @@
 /*   By: rel-mora <rel-mora@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 17:02:07 by rel-mora          #+#    #+#             */
-/*   Updated: 2024/06/14 22:17:00 by rel-mora         ###   ########.fr       */
+/*   Updated: 2024/06/15 02:42:37 by rel-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,58 +58,6 @@ void	ft_put_img(char *map, t_indx *var)
 	}
 }
 
-void	hide_coin_instance(mlx_image_t *coin, int player_x, int player_y)
-{
-	int		coin_x;
-	int		coin_y;
-	size_t	i;
-
-	i = 0;
-	while (i < coin->count)
-	{
-		coin_x = coin->instances[i].x / 32;
-		coin_y = coin->instances[i].y / 32;
-		if (player_x == coin_x && player_y == coin_y)
-		{
-			coin->instances[i].enabled = 0;
-			return ;
-		}
-		i++;
-	}
-}
-
-int	there_is_coin(t_indx *var)
-{
-	int	k;
-	int	t;
-
-	t = 0;
-	k = 0;
-	while (var->map[k])
-	{
-		while (var->map[k][t])
-		{
-			if (var->map[k][t] == 'C')
-			{
-				printf("////-----%c", var->map[k][t]);
-				return (1);
-			}
-			t++;
-		}
-		k++;
-	}
-	return (0);
-}
-
-void	ft_move(t_indx *var, char c)
-{
-	ft_move_player(var, c);
-	ft_where_is(var);
-	hide_coin_instance(var->imgs.elixir_g, var->p_idx, var->p_idy);
-	var->count_move++;
-	ft_printf("%i \n", var->count_move);
-}
-
 void	my_keyhook(mlx_key_data_t keydata, void *param)
 {
 	t_indx	*var;
@@ -136,6 +84,26 @@ void	my_keyhook(mlx_key_data_t keydata, void *param)
 		ft_move(var, 's');
 }
 
+void	ft_count_coin(t_indx *var)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (var->map[i])
+	{
+		j=0;
+		while (var->map[i][j])
+		{
+			if (var->map[i][j] == 'C')
+				var->count_coin++;
+			j++;
+		}
+		i++;
+	}
+}
+
 void	ft_initialize(t_indx *var)
 {
 	int	i;
@@ -153,6 +121,7 @@ void	ft_initialize(t_indx *var)
 	}
 	mlx_image_to_window(var->mlx, var->imgs.player_g, var->p_idx * 32,
 		var->p_idy * 32);
+	// ft_count_coin(var);
 	mlx_key_hook(var->mlx, &my_keyhook, var);
 	mlx_loop(var->mlx);
 	free_func(var);
