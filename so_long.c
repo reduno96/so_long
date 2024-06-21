@@ -6,7 +6,7 @@
 /*   By: rel-mora <rel-mora@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 11:54:17 by rel-mora          #+#    #+#             */
-/*   Updated: 2024/06/21 18:53:11 by rel-mora         ###   ########.fr       */
+/*   Updated: 2024/06/21 19:15:18 by rel-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,15 +26,11 @@ void	ft_initialize_value(t_indx *var)
 	var->p_idy = 0;
 	var->count_coin = 0;
 }
-void ff()
-{
-	system("leaks so_long");
-}
 
 int	main(int argc, char **argv)
 {
 	t_indx	var;
-	atexit(ff);
+
 	ft_initialize_value(&var);
 	if (argc == 2)
 	{
