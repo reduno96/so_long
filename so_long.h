@@ -6,7 +6,7 @@
 /*   By: rel-mora <rel-mora@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 18:07:39 by rel-mora          #+#    #+#             */
-/*   Updated: 2024/06/15 02:45:37 by rel-mora         ###   ########.fr       */
+/*   Updated: 2024/06/21 16:44:11 by rel-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,8 @@
 # include "./printf/ft_printf.h"
 # include "MLX42/include/MLX42/MLX42.h"
 # include <fcntl.h>
-# include <stdio.h>
 # include <stdlib.h>
-# include <string.h>
+# include <stdio.h>
 
 typedef struct s_images
 {
@@ -50,7 +49,7 @@ typedef struct s_indx
 	int				len;
 	int				p_idx;
 	int				p_idy;
-	size_t				count_coin;
+	size_t			count_coin;
 }					t_indx;
 
 int					ft_check_file(char *argv);
@@ -61,11 +60,11 @@ void				ft_check_char(char **map);
 void				ft_check_all(char **map);
 void				ft_check_flood(char **cpy_map);
 char				**ft_check_map(char *argv, char **map);
-
+void				ft_check_most(char **map);
 void				ft_len_map(t_indx *var);
 void				ft_move_player(t_indx *var, char c);
 void				ft_player_path(char **map);
-void				ft_where_is(t_indx *var);
+int					ft_check_images(mlx_texture_t *img);
 
 char				**ft_validate(char *argv);
 char				**ft_duplicate_map(char **map, int j);
@@ -74,6 +73,7 @@ void				free_func(t_indx *var);
 void				ft_move(t_indx *var, char c);
 void				ft_initialize(t_indx *var);
 void				ft_flood_fill(char **cpy_map, int x, int y);
-void				ft_put_error(void);
+void				ft_put_error(char *s);
+void				ft_print_moves(t_indx *var);
 
 #endif

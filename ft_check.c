@@ -6,7 +6,7 @@
 /*   By: rel-mora <rel-mora@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 11:10:04 by rel-mora          #+#    #+#             */
-/*   Updated: 2024/06/13 12:04:59 by rel-mora         ###   ########.fr       */
+/*   Updated: 2024/06/21 16:59:06 by rel-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ char	**ft_check_map(char *argv, char **map)
 	while (get_line != NULL)
 	{
 		if (get_line[0] == '\n')
-			ft_put_error();
+			ft_put_error("The map not valide\n");
 		joined = ft_join(joined, get_line);
 		free(get_line);
 		get_line = get_next_line(fd);
@@ -51,7 +51,7 @@ char	**ft_check_map(char *argv, char **map)
 	map = ft_split(joined, '\n');
 	free(joined);
 	if (!map)
-		ft_put_error();
+		ft_put_error("Map not valid");
 	return (map);
 }
 
@@ -68,7 +68,7 @@ void	ft_check_char(char **map)
 			if (map[var.i][var.j] != '0' && map[var.i][var.j] != '1'
 				&& map[var.i][var.j] != 'P' && map[var.i][var.j] != 'E'
 				&& map[var.i][var.j] != 'C')
-				ft_put_error();
+				ft_put_error("Map not valide");
 			var.j++;
 		}
 		var.i++;
@@ -98,5 +98,5 @@ void	ft_check_all(char **map)
 {
 	if (!ft_check_least(map, 'C') || !ft_check_least(map, 'E')
 		|| !ft_check_least(map, 'P'))
-		ft_put_error();
+		ft_put_error("Map Not valide");
 }

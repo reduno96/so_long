@@ -41,6 +41,7 @@ ${LIBFT}:
 
 ${LIBPRINT}:
 	@make -C ./printf
+	@echo "Compiling printf"
 
 clean:
 	@make fclean -C ${FLDLIBFT}

@@ -6,7 +6,7 @@
 /*   By: rel-mora <rel-mora@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 22:08:30 by rel-mora          #+#    #+#             */
-/*   Updated: 2024/06/15 02:51:25 by rel-mora         ###   ########.fr       */
+/*   Updated: 2024/06/21 18:49:01 by rel-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,17 +20,15 @@ void	hide_coin_instance(t_indx *var, mlx_image_t *coin, int player_x,
 	size_t	i;
 
 	i = 0;
-	(void)var;
-	printf("%zu\n", coin->count);
 	while (i < coin->count)
 	{
 		coin_x = coin->instances[i].x / 32;
 		coin_y = coin->instances[i].y / 32;
 		if (player_x == coin_x && player_y == coin_y)
 		{
-			coin->instances[i].enabled = 0;
-			if (var->count_coin < coin->count)
+			if (coin->instances[i].enabled == 1)
 				var->count_coin++;
+			coin->instances[i].enabled = 0;
 			return ;
 		}
 		i++;
@@ -59,6 +57,7 @@ void	ft_move_please(t_indx *var, char c)
 		var->imgs.player_g->instances->y += 32;
 		hide_coin_instance(var, var->imgs.elixir_g, var->j, var->i + 1);
 	}
+	ft_print_moves(var);
 	if (var->imgs.door_g->instances->x == var->imgs.player_g->instances->x
 		&& var->imgs.door_g->instances->y == var->imgs.player_g->instances->y
 		&& var->count_coin == var->imgs.elixir_g->count)
@@ -99,6 +98,4 @@ void	ft_move(t_indx *var, char c)
 	inst_ply_x = var->imgs.player_g->instances->x / 32;
 	inst_ply_y = var->imgs.player_g->instances->y / 32;
 	ft_move_player(var, c);
-	var->count_move++;
-	ft_printf("%i \n", var->count_move);
 }

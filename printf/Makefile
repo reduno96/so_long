@@ -16,15 +16,16 @@ CFLAGS = -Wall -Wextra -Werror
 all: ${NAME}
 
 ${NAME}: ${OBJS}
-	${LIBC} ${NAME} ${OBJS}
+	@${LIBC} ${NAME} ${OBJS}
 
 %.o: %.c ft_printf.h
-	${CC} ${CFLAGS} -c $<
+	@${CC} ${CFLAGS} -c $<
 
 clean:
-	${RM} ${OBJS}
+	@${RM} ${OBJS}
 
 fclean: clean
-	${RM} ${NAME}
+	@${RM} ${NAME}
+	@echo "Cleaning The objects of printf"
 
 re: fclean all
