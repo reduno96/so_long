@@ -6,7 +6,7 @@
 /*   By: rel-mora <rel-mora@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 10:01:24 by rel-mora          #+#    #+#             */
-/*   Updated: 2024/06/21 17:13:53 by rel-mora         ###   ########.fr       */
+/*   Updated: 2024/06/23 21:39:57 by rel-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,6 @@ char	**ft_validate(char *argv)
 		ft_check_most(map);
 	}
 	else
-		ft_put_error("The map not found");
+		ft_put_error("The file not found");
 	return (map);
 }

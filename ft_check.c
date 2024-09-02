@@ -6,7 +6,7 @@
 /*   By: rel-mora <rel-mora@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 11:10:04 by rel-mora          #+#    #+#             */
-/*   Updated: 2024/06/21 16:59:06 by rel-mora         ###   ########.fr       */
+/*   Updated: 2024/06/23 21:41:16 by rel-mora         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ char	**ft_check_map(char *argv, char **map)
 
 	joined = NULL;
 	fd = open(argv, O_RDONLY);
+	if (fd < 0)
+		ft_put_error("Error : no such file\n");
 	get_line = get_next_line(fd);
 	while (get_line != NULL)
 	{
